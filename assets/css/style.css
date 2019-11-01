@@ -1,0 +1,33 @@
+header {
+    background: yellow;
+    padding: 15px;
+}
+
+h1 {
+    font-weight: bold;
+    font-size: 48px;
+}
+
+h2 {
+    font-size: 32px;
+}
+
+th {
+    font-weight: bold;
+    font-size: 24px;
+}
+
+#trainTableDiv {
+    background-color: black;
+    color: white;
+    padding: 10px;
+    margin: auto;
+    margin-top: 15px;
+    width: 80vw;
+    border: black, solid, 5px;
+}
+
+#trainTable {
+    background-color: white;
+    color: black;
+}
