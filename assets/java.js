@@ -6,6 +6,8 @@ var firebaseConfig = {
   firebase.initializeApp(firebaseConfig);
   var database = firebase.database;
 
+
+
 $("#trainSubmit").on("click", function(event) {
   event.preventDefault()
   let trainName = $("#trainName").val().trim()
