@@ -17,7 +17,7 @@ th {
     font-size: 24px;
 }
 
-#trainTableDiv {
+#trainTableDiv, #addTrainFormDiv {
     background-color: black;
     color: white;
     padding: 10px;
@@ -27,7 +27,10 @@ th {
     border: black, solid, 5px;
 }
 
-#trainTable {
+#trainTable, #addTrainForm {
     background-color: white;
     color: black;
+    font-size: 16px;
+    padding: 10px;
+    line-height: 24px;
 }
