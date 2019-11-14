@@ -17,6 +17,11 @@ th {
     font-size: 24px;
 }
 
+.cel {
+    text-align: left;
+    margin: 10px;
+}
+
 #trainTableDiv, #addTrainFormDiv {
     background-color: black;
     color: white;

@@ -38,24 +38,15 @@ $("#addTrain").on("click", function(event) {
       firstTime === "" ||
       frequency === "") {
         alert("Please fill in all fields.")
-      }
-
-  if (isNaN(frequency)) {
-    alert("Frequency must be a number.")
-  } 
-  else {
-
-console.log(trainName);
-console.log(destination);
-console.log(firstTime);
-console.log(frequency);
-
-database.ref().push({
-  trainName: trainName,
-  destination: destination,
-  firstTime: firstTime,
-  frequency: frequency
-})
+      } else if (isNaN(frequency)) {
+        alert("Frequency must be a number.")
+      } else {
+        database.ref().push({
+        trainName: trainName,
+        destination: destination,
+        firstTime: firstTime,
+        frequency: frequency
+      })
 
 $("#trainName").val("");
 $("#destination").val("");
@@ -69,7 +60,17 @@ database.ref().on("child_added", function(childSnapshot){
 })
 
 function refreshTrainTable() {
+  $("tbody").empty()
+  let headerRow = $("<tr>")
+  let nameHeader = $("<th>Train Name</th>")
+  let destHeader = $("<th>Destination</th>")
+  let freqHeader = $("<th>Frequency</th>")
+  let nextHeader = $("<th>Next Arrival</th>")
+  let minsHeader = $("<th>Minutes Away</th>")
+  headerRow.append(nameHeader, destHeader, freqHeader, nextHeader, minsHeader)
+  $("tbody").append(headerRow)
   for (let i = 0; i < trainInfo.length ; i++) {
+    
     let sv = trainInfo[i]
 
     let train = sv.trainName
@@ -84,20 +85,19 @@ function refreshTrainTable() {
     let diffTime = moment().diff(moment(firstTimeConverted), "minutes");
     let tRemainder = diffTime % frequency;
     let tMinutesTillTrain = frequency - tRemainder;
-    let nextTrain = moment().add(tMinutesTillTrain, "minutes");
-    // let theNextTrain = moment(nextTrain).format("hh:mm a")
+    let nextTrain = moment().add(tMinutesTillTrain, "minutes").format('h:mm a');
     console.log(trainInfo)
 
     let tableRow = $("<tr>")
 
-    let nameData = $("<td>").text(sv.trainName)
-    let destinationData = $("<td>").text(sv.destination);
-    let firstData = $("<td>").text(regTime)
-    let frequencyData = $("<td>").text(sv.frequency)
-    let nextData = $("<td>").text(sv.nextTrain)
-    let minuteData = $("<td>").text(tMinutesTillTrain)
+    let nameData = $("<td class='cel'>").text(sv.trainName)
+    let destinationData = $("<td class='cel'>").text(sv.destination);
+    let frequencyData = $("<td class='cel'>").text(sv.frequency)
+    let firstData = $("<td class='cel'>").text(regTime)
+    let nextData = $("<td class='cel'>").text(nextTrain)
+    let minuteData = $("<td class='cel'>").text(tMinutesTillTrain)
 
-    tableRow.append(nameData, destinationData, firstData, frequencyData, nextData, minuteData)
+    tableRow.append(nameData, destinationData, frequencyData, nextData, minuteData)
 
     $("#trainTable > tbody").append(tableRow)
   }
