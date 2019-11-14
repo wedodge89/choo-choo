@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css">
     
-    <!-- Javascript/JS Libraries -->
+    <!-- Database/JS Libraries -->
 
     <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-database.js"></script>
@@ -32,7 +32,7 @@
             <div class="col-sm-10">
                 <div class="card" id="trainTableDiv">
                     <h2>Current Train Schedule</h2>
-                    <table style="width:100%" id=trainTable>
+                    <table style="width:100%" id="trainTable">
                         <tr>
                             <th>Train Name</th>
                             <th>Destination</th>
@@ -52,18 +52,18 @@
         </div>
         <div class=col-sm-10">
             <div class="card" id="addTrainFormDiv">
-            <h2>Add Train</h2>
-            <form id="addTrainForm">
-                Train Name:<br>
-                <input type="text" name="trainName" id="trainName"><br>
-                Destination:<br>
-                <input type="text" name="destination" id="destination"><br>
-                First Train Time (HH:mm - military time)<br>
-                <input type="text" name="firstTrainTime" id="firstTrainTime"><br>
-                Frequency:<br>
-                <input type="text" name="frequency" id="frequency"><br>
-                <button type="submit" id="addTrain">Submit</button>
-            </form>
+                <h2>Add Train</h2>
+                <form id="addTrainForm">
+                    Train Name:<br>
+                    <input type="text" name="trainName" id="trainName"><br>
+                    Destination:<br>
+                    <input type="text" name="destination" id="destination"><br>
+                    First Train Time (HH:mm - military time)<br>
+                    <input type="text" name="firstTrainTime" id="firstTrainTime"><br>
+                    Frequency:<br>
+                    <input type="text" name="frequency" id="frequency"><br>
+                    <button type="submit" id="addTrain">Submit</button>
+                </form>
             </div>
         </div>
         <div class="col-sm-1">
