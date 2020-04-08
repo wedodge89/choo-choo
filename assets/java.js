@@ -66,7 +66,7 @@ function refreshTrainTable() {
   let destHeader = $("<th>Destination</th>")
   let freqHeader = $("<th>Frequency</th>")
   let nextHeader = $("<th>Next Arrival</th>")
-  let minsHeader = $("<th>Time Away</th>")
+  let minsHeader = $("<th>Time Away (minutes)</th>")
   headerRow.append(nameHeader, destHeader, freqHeader, nextHeader, minsHeader)
   $("tbody").append(headerRow)
   for (let i = 0; i < trainInfo.length ; i++) {
@@ -84,8 +84,8 @@ function refreshTrainTable() {
     let firstTimeConverted = moment(time, "hh:mm").subtract(1, "years");        
     let diffTime = moment().diff(moment(firstTimeConverted), "minutes");
     let tRemainder = diffTime % frequency;
-    let tHoursTillTrain = (frequency - tRemainder) / 60;
-    let nextTrain = moment().add(tHoursTillTrain, "Hours").format('h:mm a');
+    let tMinutesTillTrain = frequency - tRemainder;
+    let nextTrain = moment().add(tMinutesTillTrain, "minutes").format('h:mm a');
     console.log(trainInfo)
 
     let tableRow = $("<tr>")
@@ -95,7 +95,7 @@ function refreshTrainTable() {
     let frequencyData = $("<td class='cel'>").text(sv.frequency)
     let firstData = $("<td class='cel'>").text(regTime)
     let nextData = $("<td class='cel'>").text(nextTrain)
-    let minuteData = $("<td class='cel'>").text(tHoursTillTrain)
+    let minuteData = $("<td class='cel'>").text(tMinutesTillTrain)
 
     tableRow.append(nameData, destinationData, frequencyData, nextData, minuteData)
 
