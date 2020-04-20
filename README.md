@@ -6,3 +6,5 @@ Choo Choo O' Clock is a web application designed to experiement with Google's Fi
 
 ## How it Works
 To start, the application connects to the pre-established Firebase database to pull any existing train data onto the page. If none is found, an empty table is printed instead. 
+
+When the user submits a new train, it is added to the database. New values, like "Next Arrival Time" are calculated, and the table on the web page is refreshed. 

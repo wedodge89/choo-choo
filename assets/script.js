@@ -7,6 +7,8 @@ let timer = 60;
 
 // }
 
+let timeAway
+
 var firebaseConfig = {
   apiKey: "AIzaSyCIxB13rG3OuJ6bbv-N4A8ETJpBEONpbHs",
   authDomain: "chugga-chugga.firebaseapp.com",
@@ -95,9 +97,16 @@ function refreshTrainTable() {
     let frequencyData = $("<td class='cel'>").text(sv.frequency)
     let firstData = $("<td class='cel'>").text(regTime)
     let nextData = $("<td class='cel'>").text(nextTrain)
-    let minuteData = $("<td class='cel'>").text(tMinutesTillTrain)
+    let hoursAway = Math.floor(parseInt(tMinutesTillTrain) / 60)
+    let minutesAway = Math.floor(parseInt(tMinutesTillTrain) % 60)
+    
+    if (hoursAway > 0) {
+      timeAway = $("<td class='cel'>").text(hoursAway + " hr " + minutesAway + " min");
+    } else {
+      timeAway = $("<td class='cel'>").text(minutesAway + " min");
+    };
 
-    tableRow.append(nameData, destinationData, frequencyData, nextData, minuteData)
+    tableRow.append(nameData, destinationData, frequencyData, nextData, timeAway)
 
     $("#trainTable > tbody").append(tableRow)
   }
