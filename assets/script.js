@@ -68,7 +68,7 @@ function refreshTrainTable() {
   let destHeader = $("<th>Destination</th>")
   let freqHeader = $("<th>Frequency</th>")
   let nextHeader = $("<th>Next Arrival</th>")
-  let minsHeader = $("<th>Time Away (minutes)</th>")
+  let minsHeader = $("<th>Time Away</th>")
   headerRow.append(nameHeader, destHeader, freqHeader, nextHeader, minsHeader)
   $("tbody").append(headerRow)
   for (let i = 0; i < trainInfo.length ; i++) {
@@ -89,12 +89,22 @@ function refreshTrainTable() {
     let tMinutesTillTrain = frequency - tRemainder;
     let nextTrain = moment().add(tMinutesTillTrain, "minutes").format('h:mm a');
     console.log(trainInfo)
+    let freqHours = Math.floor(parseInt(sv.frequency) / 60);
+    let freqMins = Math.floor(parseInt(sv.frequency) % 60)
 
     let tableRow = $("<tr>")
 
     let nameData = $("<td class='cel'>").text(sv.trainName)
     let destinationData = $("<td class='cel'>").text(sv.destination);
-    let frequencyData = $("<td class='cel'>").text(sv.frequency)
+    
+    if (freqHours > 0 && freqMins > 0) {
+      frequencyData = $("<td class='cel'>").text(`${freqHours} hr ${freqMins} min`)
+    } else if (freqHours > 0 && freqMins <= 0) {
+      frequencyData = $("<td class='cel'>").text(`${freqHours} hr`)
+    } else {
+      frequencyData = $("<td class='cel'>").text(`${freqMins} min`)
+    }
+
     let firstData = $("<td class='cel'>").text(regTime)
     let nextData = $("<td class='cel'>").text(nextTrain)
     let hoursAway = Math.floor(parseInt(tMinutesTillTrain) / 60)
@@ -102,8 +112,10 @@ function refreshTrainTable() {
     
     if (hoursAway > 0) {
       timeAway = $("<td class='cel'>").text(hoursAway + " hr " + minutesAway + " min");
-    } else {
+    } else if (hoursAway <= 0 && minutesAway > 0) {
       timeAway = $("<td class='cel'>").text(minutesAway + " min");
+    } else {
+      timeAway = $("<td class='cel'>").text("At the station now.");
     };
 
     tableRow.append(nameData, destinationData, frequencyData, nextData, timeAway)
